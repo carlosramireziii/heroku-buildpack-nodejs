@@ -27,10 +27,6 @@ echo $CACHE_DIR
 echo $ENV_DIR
 echo $BP_DIR
 
-echo "Renaming the build directory from ${BUILD_DIR} to /tmp/build"
-mv ${BUILD_DIR} /tmp/build
-BUILD_DIR=/tmp/build
-
 ### Load dependencies
 
 # shellcheck source=lib/vendor/stdlib_v7.sh
