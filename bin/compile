@@ -211,6 +211,8 @@ fi
 [ ! "$PNPM_CONFIG_CACHE" ] && PNPM_CONFIG_CACHE=$(mktemp -d -t pnpmcache.XXXXX)
 export YARN_CACHE_FOLDER NPM_CONFIG_CACHE PNPM_CONFIG_CACHE
 
+echo "YARN_CACHE_FOLDER=$YARN_CACHE_FOLDER"
+
 install_bins() {
   local node_engine npm_engine yarn_engine node_version package_manager pnpm_engine
 

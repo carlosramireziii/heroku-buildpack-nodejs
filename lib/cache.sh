@@ -51,10 +51,13 @@ restore_default_cache_directories() {
   local npm_cache=${4:-}
   local pnpm_cache_dir=${5:-}
 
+  echo "yarn_cache_dir: $yarn_cache_dir"
+
   if [[ "$YARN" == "true" ]]; then
     if has_yarn_cache "$build_dir"; then
       echo "- yarn cache is checked into source control and cannot be cached"
     elif [[ -e "$cache_dir/node/cache/yarn" ]]; then
+      echo "$cache_dir/node/cache/yarn detected"
       rm -rf "$yarn_cache_dir"
       mv "$cache_dir/node/cache/yarn" "$yarn_cache_dir"
       if [[ -d "$yarn_cache_dir/yarn" ]]; then
@@ -64,6 +67,8 @@ restore_default_cache_directories() {
         meta_set "yarn_nested_cache" "true"
         rm -rf "$yarn_cache_dir/yarn"
       fi
+      echo "yarn cache dir: " && yarn cache dir
+      ls -aslh "$yarn_cache_dir"
       echo "- yarn cache"
     else
       echo "- yarn cache (not cached - skipping)"
@@ -143,11 +148,15 @@ save_default_cache_directories() {
   local npm_cache=${4:-}
   local pnpm_cache_dir=${5:-}
 
+  echo "yarn_cache_dir: $yarn_cache_dir"
+
   if [[ "$YARN" == "true" ]]; then
     if [[ -d "$yarn_cache_dir" ]]; then
       if [[ "$YARN_2" == "true" ]] && ! node_modules_enabled "$BUILD_DIR"; then
+        echo "cp -RTf $yarn_cache_dir $cache_dir/node/cache/yarn"
         cp -RTf "$yarn_cache_dir" "$cache_dir/node/cache/yarn"
       else
+        echo "mv $yarn_cache_dir $cache_dir/node/cache/yarn"
         mv "$yarn_cache_dir" "$cache_dir/node/cache/yarn"
       fi
       echo "- yarn cache"
