@@ -113,6 +113,8 @@ meta_set "build-step" "init"
 [ -f "$BUILD_DIR/pnpm-lock.yaml" ] && PNPM=true || PNPM=false
 YARN_2=$(detect_yarn_2 "$YARN" "$BUILD_DIR")
 
+echo "YARN_2=$YARN_2"
+
 ### Save build info
 features_init "nodejs" "$BUILD_DIR" "$CACHE_DIR" "$BP_DIR/features"
 log_initial_state
