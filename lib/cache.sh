@@ -216,6 +216,7 @@ save_custom_cache_directories() {
       cp -a "$build_dir/$cachepath" "$(dirname "$cache_dir/node/cache/$cachepath")"
       echo "cached custom directory"
       echo "$(dirname "$cache_dir/node/cache/$cachepath")"
+      ls -aslh "$(dirname "$cache_dir/node/cache/$cachepath")"
     else
       echo "- $cachepath (nothing to cache)"
     fi
