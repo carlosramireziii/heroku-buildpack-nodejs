@@ -388,6 +388,9 @@ build_dependencies() {
   local cache_status start
 
   cache_status="$(get_cache_status "$CACHE_DIR")"
+
+  echo "cache_status=$cache_status"
+
   start=$(nowms)
   if [[ "$YARN_2" == "true" ]]; then
     yarn_2_install "$BUILD_DIR"
