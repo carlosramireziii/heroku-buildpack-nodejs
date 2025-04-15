@@ -148,6 +148,8 @@ save_default_cache_directories() {
   local npm_cache=${4:-}
   local pnpm_cache_dir=${5:-}
 
+  echo "build_dir: $build_dir"
+  echo "cache_dir: $cache_dir"
   echo "yarn_cache_dir: $yarn_cache_dir"
 
   if [[ "$YARN" == "true" ]]; then
@@ -212,6 +214,8 @@ save_custom_cache_directories() {
       echo "- $cachepath"
       mkdir -p "$cache_dir/node/cache/$cachepath"
       cp -a "$build_dir/$cachepath" "$(dirname "$cache_dir/node/cache/$cachepath")"
+      echo "cached custom directory"
+      echo "$(dirname "$cache_dir/node/cache/$cachepath")"
     else
       echo "- $cachepath (nothing to cache)"
     fi
