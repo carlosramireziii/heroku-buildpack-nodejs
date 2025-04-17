@@ -440,6 +440,8 @@ cache_build() {
     save_custom_cache_directories "$BUILD_DIR" "$CACHE_DIR" "$cache_directories"
   fi
   save_signature "$CACHE_DIR"
+  echo "SIGNATURE -"
+  cat "$CACHE_DIR/node/signature"
   meta_time "save-cache-time" "$cache_build_start_time"
 }
 
